@@ -8,6 +8,7 @@ import UserMessage from '../component/Chatbot/UserMessage';
 import TextInput from '../component/Chatbot/TextInput';
 import VoiceInput from '../component/Chatbot/VoiceInput';
 import QuizModal from '../component/Chatbot/QuizModal';
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const Chat = () => {
   const [isVoiceActivated, setVoiceActivated] = useState(false);
@@ -33,7 +34,7 @@ const Chat = () => {
     if (type === 'user') {
       setIsGenerating(true);
       try {
-        const response = await fetch('http://127.0.0.1:8080/predict', {
+        const response = await fetch(`${BACKEND_URL}/predict`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ data: message }),

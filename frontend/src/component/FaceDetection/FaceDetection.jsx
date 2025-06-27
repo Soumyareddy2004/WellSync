@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import * as faceapi from "face-api.js";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const FaceDetection = ({ setSuggestions}) => {
   const videoRef = useRef(null);
@@ -150,7 +151,7 @@ const FaceDetection = ({ setSuggestions}) => {
   const sendMoodToAPI = async (mood, age) => {
     try {
       console.log(`Sending mood: ${mood}, Age: ${age}`);
-      const response = await fetch("http://localhost:8080/suggest", {
+      const response = await fetch(`${BACKEND_URL}/suggest`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ mood, age }),
