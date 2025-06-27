@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const QuizModal = ({ isOpen, onClose }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -45,7 +46,7 @@ const QuizModal = ({ isOpen, onClose }) => {
     console.log("Submitting quiz with payload:", payload);
 
     try {
-      const response = await fetch("http://localhost:8080/analyze", {
+      const response = await fetch(`${BACKEND_URL}/analyze`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
